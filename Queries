@@ -1,0 +1,52 @@
+-- basicas
+SELECT nome, endereco FROM CLIENTE;
+SELECT * FROM PEDIDO WHERE peso > 10.00;
+SELECT CNH, nome FROM MOTORISTA;
+SELECT Placa, capacidade FROM VEICULO;
+SELECT id_viagem, saida, chegada FROM VIAGEM WHERE saida > '2025-10-01';
+
+-- junções
+SELECT id_pedido, descricao FROM PEDIDO WHERE id_cliente = 2; 
+
+SELECT T2.nome AS Nome_Motorista, T3.Placa FROM VIAGEM AS T1
+JOIN MOTORISTA AS T2 ON T1.CNH = T2.CNH
+JOIN VEICULO AS T3 ON T1.Placa = T3.Placa
+WHERE T1.id_viagem = 1;
+
+SELECT T1.nome AS Nome_Cliente, T2.valor, T2.descricao
+FROM CLIENTE AS T1
+JOIN PEDIDO AS T2 ON T1.id_cliente = T2.id_cliente;
+
+SELECT T1.descricao
+FROM PEDIDO AS T1
+LEFT JOIN VIAGEM AS T2 ON T1.id_viagem = T2.id_viagem
+WHERE T2.id_viagem IS NULL;
+
+SELECT T1.Placa, T1.capacidade, T2.saida AS Data_Saida
+FROM VEICULO AS T1
+LEFT JOIN VIAGEM AS T2 ON T1.Placa = T2.Placa;
+
+-- agregação
+SELECT T1.nome AS Nome_Cliente, AVG(T2.valor) AS Valor_Medio_Pedidos
+FROM CLIENTE AS T1
+JOIN PEDIDO AS T2 ON T1.id_cliente = T2.id_cliente
+GROUP BY T1.nome;
+
+SELECT origem, COUNT(id_pedido) AS Total_Pedidos
+FROM PEDIDO
+GROUP BY origem
+ORDER BY Total_Pedidos DESC;
+
+SELECT T2.nome AS Nome_Motorista, COUNT(T1.id_viagem) AS Total_Viagens
+FROM VIAGEM AS T1
+JOIN MOTORISTA AS T2 ON T1.CNH = T2.CNH
+GROUP BY T2.nome
+HAVING COUNT(T1.id_viagem) > 1;
+
+SELECT MAX(capacidade) AS Capacidade_Maxima
+FROM VEICULO;
+
+SELECT SUM(T1.valor) AS Valor_Total_Transportado
+FROM PEDIDO AS T1
+JOIN VIAGEM AS T2 ON T1.id_viagem = T2.id_viagem
+WHERE T2.saida > '2025-03-01';
