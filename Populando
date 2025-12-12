@@ -1,0 +1,57 @@
+INSERT INTO PESSOA_JURIDICA (CNPJ) VALUES 
+('11222333000144'),
+('55666777000188'),
+('99000111000122');
+
+INSERT INTO PESSOA_FISICA (CPF) VALUES 
+('12345678901'), 
+('98765432109'); 
+
+INSERT INTO CLIENTE (nome, endereco, CNPJ, CPF) VALUES 
+('Transportadora Aura.', 'Rua das Empresas, 100 - RN', '11222333000144', NULL);
+
+INSERT INTO CLIENTE (nome, endereco, CNPJ, CPF) VALUES 
+('Maria Isabel', 'Avenida Corazon Partio, 99 - PB', NULL, '12345678901');
+
+INSERT INTO CLIENTE (nome, endereco, CNPJ, CPF) VALUES 
+('Fábrica betinha', 'Rodovia do mog, Km 5 - PR', '55666777000188', NULL);
+
+INSERT INTO CLIENTE (nome, endereco, CNPJ, CPF) VALUES 
+('Yuri', 'Satélite, 42 - RN', NULL, '98765432109');
+
+INSERT INTO MOTORISTA (CNH, nome) VALUES 
+('M123456789', 'Thiago Caminhoneiro'),
+('M987654321', 'Carlos Motorista'),
+('M456789012', 'Sion Entregador');
+
+INSERT INTO VEICULO (Placa, capacidade) VALUES 
+('ABC1A22', 5000.00),
+('XYZ9Z88', 2500.00),
+('JKL3B44', 8000.00);
+
+INSERT INTO VIAGEM (saida, chegada, Placa, CNH) VALUES 
+('2025-10-01 08:00:00', '2025-10-03 17:00:00', 'ABC1A22', 'M123456789'); 
+
+INSERT INTO VIAGEM (saida, Placa, CNH) VALUES 
+('2025-10-15 09:30:00', 'XYZ9Z88', 'M987654321'); 
+
+INSERT INTO VIAGEM (saida, chegada, Placa, CNH) VALUES 
+('2025-11-01 10:00:00', '2025-11-02 12:00:00', 'ABC1A22', 'M456789012');
+
+INSERT INTO VIAGEM (saida, chegada, Placa, CNH) VALUES 
+('2025-10-02 13:00:00', '2025-11-04 11:00:00', 'ABC1A22', 'M456789012');
+
+INSERT INTO PEDIDO (id_cliente, descricao, peso, valor, origem, destino, id_viagem) VALUES 
+(1, 'Caixas de Eletrônicos Pesadas', 1500.00, 15000.00, 'São Paulo', 'Belo Horizonte', 1);
+INSERT INTO PEDIDO (id_cliente, descricao, peso, valor, origem, destino, id_viagem) VALUES 
+(3, 'Matéria Prima Lote A', 3000.00, 50000.00, 'Curitiba', 'Rio de Janeiro', 1);
+
+INSERT INTO PEDIDO (id_cliente, descricao, peso, valor, origem, destino, id_viagem) VALUES 
+(2, 'Documentos Urgentes', 5.00, 300.00, 'Rio de Janeiro', 'Vitória', 2); -- Peso <= 10kg
+INSERT INTO PEDIDO (id_cliente, descricao, peso, valor, origem, destino, id_viagem) VALUES 
+(4, 'Equipamento de Teste', 200.00, 8000.00, 'Salvador', 'Fortaleza', 2);
+
+INSERT INTO PEDIDO (id_cliente, descricao, peso, valor, origem, destino, id_viagem) VALUES 
+(3, 'Novo Lote de Produtos', 800.00, 2500.00, 'Curitiba', 'Porto Alegre', NULL);
+INSERT INTO PEDIDO (id_cliente, descricao, peso, valor, origem, destino, id_viagem) VALUES 
+(4, 'Amostras de Peças', 2.50, 150.00, 'Recife', 'Natal', NULL);
